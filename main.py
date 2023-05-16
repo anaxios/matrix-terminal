@@ -18,6 +18,8 @@ signal.signal(signal.SIGINT, handler)
 
 
 canvas_w, canvas_h = os.get_terminal_size()
+canvas_w -= 1
+canvas_h -= 1
 
 def clear_screen():
     print("\x1b[1J")
@@ -50,27 +52,27 @@ def dim():
     print(f"\x1b[2m")
 
 def char_set():
-    # if (random.randrange(0,100) < 1):
-    #     # Hangul
-    #     return random.randrange(0xAC00,0xD7AF)
+     if (random.randrange(0,100) < 1):
+         # Hangul
+         return random.randrange(0xAC00,0xD7AF)
 
-    # if (random.randrange(0,100) < 10):
-    #     # Cyrillic
-    #     return random.randrange(0x400,0x4FF)
-    #
-    # elif (random.randrange(0,100) < 10):
-    #     # Greek & Coptic
-    #     return random.randrange(0x370,0x3FF)
-    #
-    # elif (random.randrange(0,100) < 10):
-    #     # Hebrew
-    #     return random.randrange(0x590,0x5FF)
-    #
-    # elif (random.randrange(0,100) < 10):
-    #     # Runic
-    #     return random.randrange(0x16A0,0x16FF)
-    #
-    # else:
+     if (random.randrange(0,100) < 10):
+         # Cyrillic
+         return random.randrange(0x400,0x4FF)
+    
+     elif (random.randrange(0,100) < 10):
+         # Greek & Coptic
+         return random.randrange(0x370,0x3FF)
+    
+     elif (random.randrange(0,100) < 10):
+         # Hebrew
+         return random.randrange(0x590,0x5FF)
+    
+     elif (random.randrange(0,100) < 10):
+         # Runic
+         return random.randrange(0x16A0,0x16FF)
+    
+     else:
         # Latin
         return random.randrange(0x21,0x7f)
 
@@ -87,16 +89,10 @@ def draw_row(col, something):
 
     seed = random.randrange(0,100)
     if (seed < 10 and something[col] == 0):
-        #cursor(row, col, t[random.randrange(0,len(t))])
-        # cursor(row, col, chr(t))
         cursor(row, col, chr(t))
         col_state[col] = row + 1
-    # elif (seed < 10 and something[col] == 1):
-    #     cursor(row, col, chr(0x20))
-    #     col_state[col] = row + 1
     else:
         cursor(row, col, chr(0x20))
-        # col_state[col] = row + 1
 
 
 def main():
@@ -110,12 +106,10 @@ def main():
     while (True):
         something = [random.randrange(0,2) for x in range(0,canvas_w)]
         for col in range(0,canvas_h):
-            # col_state = [0] * canvas_w 
-            for row in range(0,canvas_w, 2):
+            for row in range(1,canvas_w, 2):
                 draw_row(row, something)
                 time.sleep(0.0002)
                 
-
 
 
 if __name__ == '__main__':
