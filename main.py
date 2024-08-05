@@ -61,59 +61,34 @@ class Screen:
 def random_char():
     result = ' '
     exclusions = [0x22,0x27,0x28,0x29,0x2c,0x2d,0x2e,0x2f,0x3a,0x3b,0x3c,0x3d,0x3e,0x5b,0x5c,0x5d,0x5e,0x5f,0x60,0x7b,0x7c,0x7d,0x7e]
-    if (random.randrange(0,100) < 1):
-        # Hangul
-        result = random.randrange(0xAC00,0xD7AF)
+    # if (random.randrange(0,100) < 1):
+    #     # Hangul
+    #     result = random.randrange(0xAC00,0xD7AF)
 
-    if (random.randrange(0,100) < 10):
-        # Cyrillic
-        result = random.randrange(0x400,0x4FF)
+    # if (random.randrange(0,100) < 10):
+    #     # Cyrillic
+    #     result = random.randrange(0x400,0x4FF)
     
-    elif (random.randrange(0,100) < 10):
-        # Greek & Coptic
-        result = random.randrange(0x370,0x3FF)
+    # elif (random.randrange(0,100) < 10):
+    #     # Greek & Coptic
+    #     result = random.randrange(0x370,0x3FF)
     
-    elif (random.randrange(0,100) < 10):
-        # Hebrew
-        result = random.randrange(0x590,0x5FF)
+    # elif (random.randrange(0,100) < 10):
+    #     # Hebrew
+    #     result = random.randrange(0x590,0x5FF)
     
-    elif (random.randrange(0,100) < 10):
-        # Runic
-        result = random.randrange(0x16A0,0x16FF)
+    # elif (random.randrange(0,100) < 10):
+    #     # Runic
+    #     result = random.randrange(0x16A0,0x16FF)
     
-    else:
+    
         # Latin
-        result = random.randrange(0x21,0x7f)
+    result = random.randrange(0x21,0x7f)
 
     while (any(e == result for e in exclusions)): 
         result = random_char() 
     return result
 
-
-# class Model_Old: 
-#     def __init__(self):
-#         self.fps       = 0
-#         self.t         = self.fps
-#         self.row       = 0
-#         self.col       = 0
-#         self.state_col = [0] * canvas_w
-#         self.model     = [[' ' for x in range(canvas_w)] 
-#                          for y in range(canvas_h)]
-#
-#     def tick(self):
-#         t = random_char() 
-#         if self.t == self.fps:
-#             for i in range(canvas_w):
-#                 self.row = self.state_col[self.col] % canvas_w 
-#                 if random.randrange(0,100) < 20:
-#                     self.model[self.row][self.col] = random_char()
-#                     self.state_col[self.col] = (self.row + 1) % canvas_h
-#                 else:
-#                     self.model[self.row][self.col] = chr(0x20)
-#     
-#                 self.col = (self.col + 1) % len(self.model[0]) 
-#         self.t = (self.t + 1) % (self.fps + 1)
-#
 
 class Text:
     def __init__(self, model, lifetime):
